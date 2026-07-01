@@ -1,0 +1,49 @@
+2026-07-01 11:15:35 | INFO     | bot.client | Binance Futures Testnet client initialized successfully
+2026-07-01 11:15:35 | INFO     | bot.orders | Placing MARKET BUY order | symbol=BTCUSDT qty=0.001
+2026-07-01 11:15:35 | INFO     | bot.orders | MARKET order accepted by exchange | orderId=18164753457 status=NEW
+2026-07-01 11:15:36 | INFO     | bot.orders | Fill confirmed after 1 poll(s) | orderId=18164753457 status=FILLED avgPrice=58423.60 executedQty=0.001
+2026-07-01 11:15:36 | INFO     | bot.orders | MARKET order result | orderId=18164753457 status=FILLED avgPrice=58423.60 executedQty=0.001
+
+2026-07-01 11:15:47 | INFO     | bot.client | Binance Futures Testnet client initialized successfully
+2026-07-01 11:15:47 | INFO     | bot.orders | Placing MARKET SELL order | symbol=BTCUSDT qty=0.001
+2026-07-01 11:15:47 | INFO     | bot.orders | MARKET order accepted by exchange | orderId=18164780839 status=NEW
+2026-07-01 11:15:48 | INFO     | bot.orders | Fill confirmed after 1 poll(s) | orderId=18164780839 status=FILLED avgPrice=58419.80 executedQty=0.001
+2026-07-01 11:15:48 | INFO     | bot.orders | MARKET order result | orderId=18164780839 status=FILLED avgPrice=58419.80 executedQty=0.001
+
+2026-07-01 11:15:58 | INFO     | bot.client | Binance Futures Testnet client initialized successfully
+2026-07-01 11:15:58 | INFO     | bot.orders | Placing LIMIT BUY order | symbol=BTCUSDT qty=0.001 price=50000.0
+2026-07-01 11:15:58 | INFO     | bot.orders | LIMIT order placed | orderId=18164806068 status=NEW price=50000.00000000
+
+2026-07-01 11:16:06 | INFO     | bot.client | Binance Futures Testnet client initialized successfully
+2026-07-01 11:16:06 | INFO     | bot.orders | Placing LIMIT SELL order | symbol=BTCUSDT qty=0.001 price=150000.0
+2026-07-01 11:16:06 | INFO     | bot.orders | LIMIT order placed | orderId=18164834273 status=NEW price=150000.00000000
+
+2026-07-01 11:16:45 | INFO     | bot.client | Binance Futures Testnet client initialized successfully
+2026-07-01 11:16:45 | INFO     | bot.orders | Placing STOP_LIMIT BUY order | symbol=BTCUSDT qty=0.002 price=75000.0 stopPrice=74000.0
+2026-07-01 11:16:46 | INFO     | bot.orders | STOP_LIMIT order placed | orderId=18165012340 status=NEW stopPrice=74000.00000000
+
+2026-07-01 11:17:02 | INFO     | bot.client | Binance Futures Testnet client initialized successfully
+2026-07-01 11:17:02 | INFO     | bot.orders | Placing STOP_LIMIT SELL order | symbol=BTCUSDT qty=0.002 price=43000.0 stopPrice=44000.0
+2026-07-01 11:17:03 | INFO     | bot.orders | STOP_LIMIT order placed | orderId=18165034891 status=NEW stopPrice=44000.00000000
+
+2026-07-01 11:20:11 | INFO     | bot.client | Binance Futures Testnet client initialized successfully
+2026-07-01 11:20:11 | INFO     | bot.orders | Placing MARKET BUY order | symbol=BNBUSDT qty=0.1
+2026-07-01 11:20:11 | INFO     | bot.orders | MARKET order accepted by exchange | orderId=1798372115 status=NEW
+2026-07-01 11:20:12 | INFO     | bot.orders | Fill confirmed after 1 poll(s) | orderId=1798372115 status=FILLED avgPrice=685.40 executedQty=0.1
+2026-07-01 11:20:12 | INFO     | bot.orders | MARKET order result | orderId=1798372115 status=FILLED avgPrice=685.40 executedQty=0.1
+
+--- VALIDATION ERROR TESTS ---
+
+2026-07-01 11:22:05 | INFO     | bot.client | Binance Futures Testnet client initialized successfully
+2026-07-01 11:22:05 | ERROR    | bot.orders | API error (MARKET order): APIError(code=-4164): Order's notional must be no smaller than 20 (unless you choose reduce only).
+Traceback (most recent call last):
+  File "bot/orders.py", in place_market_order
+    raw = client.get_client().futures_create_order(...)
+binance.exceptions.BinanceAPIException: APIError(code=-4164): Order's notional must be no smaller than 20 (unless you choose reduce only).
+
+2026-07-01 11:25:30 | INFO     | bot.client | Binance Futures Testnet client initialized successfully
+2026-07-01 11:25:30 | ERROR    | bot.orders | API error (STOP_LIMIT order): APIError(code=-2021): Order would immediately trigger.
+Traceback (most recent call last):
+  File "bot/orders.py", in place_stop_limit_order
+    raw = client.create_order_direct(...)
+binance.exceptions.BinanceAPIException: APIError(code=-2021): Order would immediately trigger.
